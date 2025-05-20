@@ -67,6 +67,9 @@ class GetSnackBar extends StatefulWidget {
   /// of message you are displaying. Other widgets may break the layout
   final Widget? icon;
 
+  /// By default, the icon is 42.0 wide.
+  final double iconWidth;
+
   /// An option to animate the icon (if present). Defaults to true.
   final bool shouldIconPulse;
 
@@ -179,6 +182,7 @@ class GetSnackBar extends StatefulWidget {
     this.titleText,
     this.messageText,
     this.icon,
+    this.iconWidth = 42.0,
     this.shouldIconPulse = true,
     this.maxWidth,
     this.margin = const EdgeInsets.all(0.0),
@@ -496,8 +500,8 @@ You need to either use message[String], or messageText[Widget] or define a userI
               _buildLeftBarIndicator(),
               if (_rowStyle == RowStyle.icon || _rowStyle == RowStyle.all)
                 ConstrainedBox(
-                  constraints:
-                      BoxConstraints.tightFor(width: 42.0 + iconPadding),
+                  constraints: BoxConstraints.tightFor(
+                      width: widget.iconWidth + iconPadding),
                   child: _getIcon(),
                 ),
               Expanded(
